@@ -1,2 +1,2 @@
-<script src="../js/jquery.js"></script>
-<script src="../style/bootstrap/js/bootstrap.js"></script>
+
+<script src="../js/edit_text.js"></script>

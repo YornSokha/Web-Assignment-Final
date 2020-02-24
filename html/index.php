@@ -53,36 +53,41 @@
 				}
 				$db_connection->close();
 				?>
-				<?php foreach ($questions as $question) {
-					?>
-					<div class="card">
-						<div class="card-header p-2" id="heading-<?php echo $question['id'] ?>">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-										data-target="#collapse-<?php echo $question['id'] ?>"
-										aria-expanded="false" aria-controls="collapse-<?php echo $question['id'] ?>">
-									Q: <?php echo $question['question'] ?>
-								</button>
-							</h5>
-						</div>
+				<?php foreach ($questions
 
-						<div id="collapse-<?php echo $question['id'] ?>" class="collapse"
-							 aria-labelledby="heading-<?php echo $question['id'] ?>"
-							 data-parent="#faqExample">
-							<div class="card-body">
-								<?php if (isset($question['answers'][0])) {
-									foreach ($question['answers'] as $q_answer) {
-										?>
-										<b>Answer:</b> <?php echo $q_answer['answer'] ?><br>
-									<?php }
-								} else { ?>
-									<b>Answer:</b> <?php echo $question['answers']['answer'];
-								} ?>
-							</div>
+				as $question) {
+				?>
+				<div class="card">
+					<div class="card-header p-2" id="heading-<?php echo $question['id'] ?>">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+									data-target="#collapse-<?php echo $question['id'] ?>"
+									aria-expanded="false" aria-controls="collapse-<?php echo $question['id'] ?>">
+								Q: <?php echo $question['question'] ?>
+							</button>
+						</h5>
+					</div>
+
+					<div id="collapse-<?php echo $question['id'] ?>" class="collapse"
+						 aria-labelledby="heading-<?php echo $question['id'] ?>"
+						 data-parent="#faqExample">
+						<div class="card-body">
+							<?php if (isset($question['answers'][0])) {
+								foreach ($question['answers'] as $q_answer) {
+									?>
+									<b>Answer:</b><span class="editable-field" title="Click to edit"><?php echo $q_answer['answer'] ?></span> <br>
+								<?php }
+							} else { ?>
+							<b>Answer:</b>
+							<span class="editable-field" title="Click to edit"><?php echo $question['answers']['answer'] ?> </span>
+							<?php } ?>
 						</div>
 					</div>
-				<?php } ?>
+				</div>
+			<?php } ?>
 			</div>
+
+			<a href="#" id="comments">awesome<br>user!</a>
 		</div>
 	</div>
 
