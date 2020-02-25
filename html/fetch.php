@@ -11,11 +11,8 @@
 //?>
 
 <?php
-include("helper/db.php");
+include("../helper/db.php");
 $db_connection = new mysqli($host, $user, $password, $dbname);
-if ($db_connection->connect_errno) {
-	echo "Failed to connect to database";
-}
 
 $sql = "SELECT id, question from questions";
 $result = $db_connection->query($sql);

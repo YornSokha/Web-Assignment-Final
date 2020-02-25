@@ -55,7 +55,7 @@
 				?>
 				<?php foreach ($questions
 
-				as $question) {
+				as $question) {break;
 				?>
 				<div class="card">
 					<div class="card-header p-2" id="heading-<?php echo $question['id'] ?>">
@@ -87,7 +87,109 @@
 			<?php } ?>
 			</div>
 
-			<a href="#" id="comments">awesome<br>user!</a>
+			<script type="text/javascript" language="javascript" >
+				$(document).ready(function(){
+
+					function fetch_employee_data()
+					{
+						$.ajax({
+							url:"fetch.php",
+							method:"POST",
+							dataType:"json",
+							success:function(data)
+							{
+								console.log(data);
+								// alert(Object.keys(data).length);
+								for(questoin in data)
+								{
+									var html_data = '<div class="card">';
+									html_data += '<div class="card-header p-2" id="heading-"' + questoin;
+									html_data += '<h5 class="mb-0">';
+									//
+									// var html_data = '<tr><td>'+data[count].id+'</td>';
+									// html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
+									// html_data += '<td data-name="gender" class="gender" data-type="select" data-pk="'+data[count].id+'">'+data[count].gender+'</td>';
+									// html_data += '<td data-name="designation" class="designation" data-type="text" data-pk="'+data[count].id+'">'+data[count].designation+'</td>';
+									// html_data += '<td data-name="age" class="age" data-type="text" data-pk="'+data[count].id+'">'+data[count].age+'</td></tr>';
+									$('#faqExample').append(html_data);
+								}
+							}
+						})
+					}
+
+					fetch_employee_data();
+
+					$('#employee_data').editable({
+						container: 'body',
+						mode: 'inline',
+						selector: 'td.name',
+						url: "update.php",
+						title: 'Employee Name',
+						type: "POST",
+						//dataType: 'json',
+						validate: function(value){
+							if($.trim(value) == '')
+							{
+								return 'This field is required';
+							}
+						}
+					});
+
+					$('#employee_data').editable({
+						container: 'body',
+						selector: 'td.gender',
+						url: "update.php",
+						title: 'Gender',
+						type: "POST",
+						dataType: 'json',
+						source: [{value: "Male", text: "Male"}, {value: "Female", text: "Female"}],
+						validate: function(value){
+							if($.trim(value) == '')
+							{
+								return 'This field is required';
+							}
+						}
+					});
+
+					$('#employee_data').editable({
+						container: 'body',
+						selector: 'td.designation',
+						url: "update.php",
+						title: 'Designation',
+						type: "POST",
+						dataType: 'json',
+						validate: function(value){
+							if($.trim(value) == '')
+							{
+								return 'This field is required';
+							}
+						}
+					});
+
+					$('#employee_data').editable({
+						container: 'body',
+						selector: 'td.age',
+						url: "update.php",
+						title: 'Age',
+						type: "POST",
+						dataType: 'json',
+						validate: function(value){
+							if($.trim(value) == '')
+							{
+								return 'This field is required';
+							}
+							var regex = /^[0-9]+$/;
+							if(! expression.test(value))
+							{
+								return 'Numbers only!';
+							}
+						}
+					});
+
+
+
+				});
+			</script>
 		</div>
 	</div>
 
