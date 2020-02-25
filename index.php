@@ -58,6 +58,7 @@
 
 		$('#employee_data').editable({
 			container: 'body',
+			mode: 'inline',
 			selector: 'td.name',
 			url: "update.php",
 			title: 'Employee Name',
